@@ -32,5 +32,14 @@ All work (Adding, Moving, Removing) is handled by the **AI Agent** autonomously.
 
 ---
 
+## 🖼️ Visuals
+### Kanban Board
+![Kanban Tab](assets/kanban_tab.png)
+
+### Team Matrix
+![Team Matrix Tab](assets/team_matrix_tab.png)
+
+---
+
 ## ⚖️ Licensing
 Licensed under the **MIT License**. Use it for free, bundle it into products, or sell it—full commercial freedom.
