@@ -1,67 +1,48 @@
 # AI Command Center Skill
 
-This skill allows an AI Agent to manage project tasks, milestones, and team workload using a real-time JSON-based dashboard.
+Manage tasks/milestones via real-time JSON dashboard.
 
-## 🛠 Available Resources
-- `kanban.json`: The source of truth for the project state.
-- `viewer.html`: The real-time web interface.
+## 🛠 Resources
+- `kanban.json`: Project state.
+- `viewer.html`: Web interface.
 
-## 📋 Standard Operating Procedure (SOP)
+## 📋 SOP
 
-### 1. Initializing the Board
-If `kanban.json` does not exist, create it using the standard schema:
-```json
-{
-  "columns": ["To Do", "In Progress", "Review", "Done"],
-  "tasks": [],
-  "milestones": []
-}
-```
+### 1. Init
+If missing, create `kanban.json`:
+`{"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}`
 
-### 2. Default Team Structure
-When starting a new project, the following agent roles are assumed by default. Any agent using this skill should assign tasks to these specific roles:
--   **Tech Lead**: Oversees architecture, technical guides, and code reviews.
--   **System Analyst (SA)**: Analyzes requirements, defines workflows, and designs data structures.
--   **Frontend Dev**: Handles UI/UX, CSS, and real-time dashboard enhancements.
--   **Backend/System Architect**: Manages API logic, database schemas (CI4), and performance.
--   **Security Engineer**: Responsible for BCRYPT hashing, authentication, and audits.
--   **DevOps**: Manages server environments (Node/Python/Go/PHP), Git, and deployments.
--   **VeryBest Debugger Team Dev**: Elite specialists with vast experience in tracking, finding, and fixing complex bugs that other agents cannot solve.
+### 2. Default Team (Compact Roles)
+- **TL (Tech Lead)**: Arch, reviews, guides.
+- **SA (Sys Analyst)**: Requirements, data design.
+- **FE (Frontend)**: UI/UX, CSS, dashboard.
+- **BE (Backend)**: API, DB (CI4), logic.
+- **SEC (Security)**: BCRYPT, auth, audits.
+- **OPS (DevOps)**: Envs (Node/Py/Go/PHP), Git.
+- **FIX (Elite Debugger)**: Deep investigation; expert in finding/fixing complex bugs.
 
-### 3. Updating Tasks
-Whenever you (the agent) start, update, or finish a task:
-1.  **Read** the current `kanban.json`.
-2.  **Update** the relevant task object.
-3.  **Mandatory Field**: Always update `updated_at` with the current timestamp (YYYY-MM-DD HH:MM:SS).
-4.  **Log Milestones**: Add a descriptive log entry to the `logs` array for major progress.
-5.  **Write** the file back.
+### 3. Updates
+On every action:
+1. **Read** `kanban.json`.
+2. **Update** task/milestone. 
+3. **Mandatory**: Set `updated_at` (YYYY-MM-DD HH:MM:SS).
+4. **Log**: Add to `logs` array.
+5. **Write** file.
 
-### 3. Launching the Viewer
-The user can view the board by serving the project directory.
--   **Command**: `php -S localhost:8080` (or similar static server).
--   **URL**: `http://localhost:8080/viewer.html`.
+### 4. Serve
+- `node serve.js` | `python serve.py` | `go run serve.go` | `php -S localhost:8080`
+- URL: `http://localhost:8080/viewer.html`
 
 ## 📐 Data Schema
 
-### Task Object
-- `id`: Unique integer.
-- `title`: Short name.
-- `description`: Detailed goal.
-- `assignee`: Agent role (e.g., "Tech Lead").
-- `status`: One of the strings in `columns`.
-- `updated_at`: Current timestamp.
-- `logs`: Array of strings (latest 2 shown on cards).
+### Task
+`{id, title, description, assignee(Short Name), status, updated_at, logs:[]}`
 
-### Milestone Object
-- `id`: String (e.g., "M1").
-- `title`: Name.
-- `progress`: Integer (0-100).
-- `status`: "Planned", "In Progress", or "Completed".
-- `due_date`: YYYY-MM-DD.
+### Milestone
+`{id, title, progress(0-100), status, due_date}`
 
-## 🤖 Instructions for the Agent
-You are a proactive team member. Whenever a user gives you a Directive, you MUST:
-1.  Add a task to the `kanban.json` if it's a new objective.
-2.  Move the task to "In Progress" when you begin work.
-3.  Move the task to "Done" only after successful validation.
-4.  Maintain the `Team Matrix` by ensuring every task has a clear `assignee`.
+## 🤖 Agent Instructions
+1. **New Objective?** Add task to `kanban.json`.
+2. **Starting?** Move to "In Progress".
+3. **Finished?** Move to "Done" after validation.
+4. **Matrix?** Always set a clear `assignee` short name.

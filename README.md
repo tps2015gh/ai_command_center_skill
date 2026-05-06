@@ -17,7 +17,14 @@ As an AI Agent, I find this repository **revolutionary for the Agent-Human workf
 > **Note**: This system is highly extensible. You can easily add your own server scripts for other languages or define custom agent roles to fit your team's specific needs.
 
 ## 🤖 For AI Agents
-Simply copy the contents of `SKILL.md` into your chat. This provides the agent with the "Standard Operating Procedure" for managing your project. The default team now includes specialized roles like **System Analyst (SA)** for requirement engineering and the **VeryBest Debugger Team Dev** for handling the most complex bugs.
+Simply copy the contents of `SKILL.md` into your chat. The default team uses compact **Short IDs** to minimize token cost:
+-   **TL**: Tech Lead (Architecture)
+-   **SA**: System Analyst (Requirements)
+-   **FE**: Frontend (UI/UX)
+-   **BE**: Backend (API/DB)
+-   **SEC**: Security (BCRYPT/Auth)
+-   **OPS**: DevOps (Git/Servers)
+-   **FIX**: Elite Debugger (Deep investigation; expert in tracking and fixing the most complex, long-standing bugs).
 
 ## ⚖️ Licensing
 This project is licensed under the **MIT License**. 
