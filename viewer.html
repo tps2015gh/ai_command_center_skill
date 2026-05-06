@@ -15,7 +15,7 @@
             --text-light: #7f8c8d;
             --accent: #667eea;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 20px; min-height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0; padding: 20px; min-height: 100vh; padding-bottom: 60px; }
         .header-container { text-align: center; margin-bottom: 30px; }
         h1 { color: #fff; font-size: 2.5rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
@@ -68,6 +68,9 @@
         .status-bar { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.6); color: white; padding: 8px 15px; border-radius: 30px; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; z-index: 1000; backdrop-filter: blur(5px); }
         .live-indicator { color: #2ecc71; font-weight: bold; animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        .server-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.9); border-top: 1px solid #ddd; padding: 10px 20px; font-size: 0.75rem; color: #7f8c8d; display: flex; justify-content: space-between; backdrop-filter: blur(10px); box-sizing: border-box; }
+        .server-badge { background: #34495e; color: white; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
     </style>
 </head>
 <body>
@@ -85,29 +88,33 @@
     <div id="team" class="tab-content"><div class="board" id="team-board">Loading...</div></div>
     <div id="milestones" class="tab-content"><div class="milestone-container" id="milestone-list">Loading...</div></div>
 
+    <div class="server-footer">
+        <div>Server: <span id="server-lang" class="server-badge">Detecting...</span> | Path: <span id="server-path">Detecting...</span></div>
+        <div id="server-cmd" style="font-family: monospace;">Detecting command...</div>
+    </div>
+
     <script>
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if (event) event.currentTarget.classList.add('active');
+        }
+
+        async function fetchServerInfo() {
+            try {
+                const response = await fetch('/server-info');
+                const info = await response.json();
+                document.getElementById('server-lang').textContent = info.language;
+                document.getElementById('server-path').textContent = info.baseDir;
+                document.getElementById('server-cmd').textContent = info.command;
+            } catch (e) { console.error("Could not fetch server info"); }
         }
 
         async function fetchKanban() {
             try {
-                const timestamp = new Date().getTime();
-                let response;
-                
-                // 1. Try local directory first
-                try {
-                    response = await fetch('kanban.json?t=' + timestamp);
-                    if (!response.ok) throw new Error();
-                } catch (e) {
-                    // 2. Fallback to parent directory if local fails
-                    response = await fetch('../kanban.json?t=' + timestamp);
-                    if (!response.ok) throw new Error("Could not find kanban.json");
-                }
-
+                const response = await fetch('kanban.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error("File not found");
                 const data = await response.json();
                 renderBoard(data);
                 renderTeamMatrix(data);
@@ -177,6 +184,7 @@
                 </div>`).join('');
         }
 
+        fetchServerInfo();
         fetchKanban();
         setInterval(fetchKanban, 2000);
     </script>
