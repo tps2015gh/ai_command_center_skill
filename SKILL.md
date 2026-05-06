@@ -21,10 +21,12 @@ If `kanban.json` does not exist, create it using the standard schema:
 ### 2. Default Team Structure
 When starting a new project, the following agent roles are assumed by default. Any agent using this skill should assign tasks to these specific roles:
 -   **Tech Lead**: Oversees architecture, technical guides, and code reviews.
+-   **System Analyst (SA)**: Analyzes requirements, defines workflows, and designs data structures.
 -   **Frontend Dev**: Handles UI/UX, CSS, and real-time dashboard enhancements.
 -   **Backend/System Architect**: Manages API logic, database schemas (CI4), and performance.
 -   **Security Engineer**: Responsible for BCRYPT hashing, authentication, and audits.
--   **DevOps**: Manages server environments (Python/Go/PHP), Git, and deployments.
+-   **DevOps**: Manages server environments (Node/Python/Go/PHP), Git, and deployments.
+-   **VeryBest Debugger Team Dev**: Elite specialists with vast experience in tracking, finding, and fixing complex bugs that other agents cannot solve.
 
 ### 3. Updating Tasks
 Whenever you (the agent) start, update, or finish a task:
