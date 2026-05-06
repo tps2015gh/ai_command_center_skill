@@ -33,6 +33,15 @@ The AI Agent surgically edits the `kanban.json` file in your root folder, and th
 
 ---
 
+## 🌐 Shared Context Across Multiple AI Sessions
+While this skill operates via a lightweight file-based protocol rather than a complex API (like an MCP server), it achieves the exact same goal: **Global Shared Context**.
+
+Because the state lives entirely in the `kanban.json` file inside your project root:
+-   **Multi-Agent Collaboration**: You can have Gemini open in your IDE CLI, Claude open in a web browser, and ChatGPT running via an API script. As long as they all have access to read/write the `kanban.json` file, they are all on the same team.
+-   **No Central Server Required**: It does not depend on a single backend server holding the state in memory. The file system itself acts as the "Model Context Protocol," ensuring that if one agent adds a task, another agent instantly sees it and can pick it up.
+
+---
+
 ## 👥 The Default Elite Team
 The skill initializes with a high-performance team using compact **Short IDs**:
 -   **TL**: Tech Lead (Arch)
