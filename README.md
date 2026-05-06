@@ -22,6 +22,8 @@ This is the core philosophy: **The web viewer is read-only for humans.**
 
 The AI Agent surgically edits the `kanban.json` file, and the viewer reflects that change instantly. This ensures the AI remains the **Source of Action** while you remain the **Source of Intent**.
 
+> **⚠️ Important Note**: This repository is designed to "wait" for a connection from **Gemini** or your preferred **AI Agent**. You do not need to fill out any forms or enter data manually. Gemini or the Agent will autonomously fill the project state, create tasks, and update milestones by themselves the moment you make a request in the prompt.
+
 ---
 
 ## 🔮 Why No-UI is the Future
