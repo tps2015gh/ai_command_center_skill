@@ -18,6 +18,7 @@ class CommandCenterHandler(http.server.SimpleHTTPRequestHandler):
             info = {
                 "language": "Python",
                 "command": "python serve.py",
+                "pid": os.getpid(),
                 "baseDir": BASE_DIR
             }
             self.wfile.write(json.dumps(info).encode())

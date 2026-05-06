@@ -25,6 +25,7 @@ const server = http.createServer((req, res) => {
         return res.end(JSON.stringify({ 
             language: 'Node.js', 
             command: 'node serve.js',
+            pid: process.pid,
             baseDir: baseDir 
         }));
     }

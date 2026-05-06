@@ -13,6 +13,7 @@ import (
 type ServerInfo struct {
 	Language string `json:"language"`
 	Command  string `json:"command"`
+	PID      int    `json:"pid"`
 	BaseDir  string `json:"baseDir"`
 }
 
@@ -26,6 +27,7 @@ func main() {
 		info := ServerInfo{
 			Language: "Go",
 			Command:  "go run serve.go",
+			PID:      os.Getpid(),
 			BaseDir:  baseDir,
 		}
 		w.Header().Set("Content-Type", "application/json")

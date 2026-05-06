@@ -89,7 +89,7 @@
     <div id="milestones" class="tab-content"><div class="milestone-container" id="milestone-list">Loading...</div></div>
 
     <div class="server-footer">
-        <div>Server: <span id="server-lang" class="server-badge">Detecting...</span> | Path: <span id="server-path">Detecting...</span></div>
+        <div>Server: <span id="server-lang" class="server-badge">Detecting...</span> | PID: <span id="server-pid" class="server-badge" style="background:#e74c3c;">-</span> | Path: <span id="server-path">Detecting...</span></div>
         <div id="server-cmd" style="font-family: monospace;">Detecting command...</div>
     </div>
 
@@ -106,6 +106,7 @@
                 const response = await fetch('/server-info');
                 const info = await response.json();
                 document.getElementById('server-lang').textContent = info.language;
+                document.getElementById('server-pid').textContent = info.pid;
                 document.getElementById('server-path').textContent = info.baseDir;
                 document.getElementById('server-cmd').textContent = info.command;
             } catch (e) { console.error("Could not fetch server info"); }
