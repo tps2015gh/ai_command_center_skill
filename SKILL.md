@@ -3,13 +3,13 @@
 Manage tasks/milestones via real-time JSON dashboard.
 
 ## 🛠 Resources
-- `kanban.json`: Project state.
+- `kanban.json`: Project state (Stored in the **target application's root directory**).
 - `viewer.html`: Web interface.
 
 ## 📋 SOP
 
 ### 1. Init
-If missing, create `kanban.json`:
+If missing, create `kanban.json` in the **project root**:
 `{"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}`
 
 ### 2. Default Team (Compact Roles)
@@ -23,14 +23,15 @@ If missing, create `kanban.json`:
 
 ### 3. Updates
 On every action:
-1. **Read** `kanban.json`.
+1. **Read** `kanban.json` from the project root.
 2. **Update** task/milestone. 
 3. **Mandatory**: Set `updated_at` (YYYY-MM-DD HH:MM:SS).
 4. **Log**: Add to `logs` array.
-5. **Write** file.
+5. **Write** file back to the project root.
 
 ### 4. Serve
-- `node serve.js` | `python serve.py` | `go run serve.go` | `php -S localhost:8080`
+- Place `viewer.html` and a server script in the project root.
+- Run: `node serve.js` | `python serve.py` | `go run serve.go` | `php -S localhost:8080`
 - URL: `http://localhost:8080/viewer.html`
 
 ## 📐 Data Schema
@@ -42,7 +43,7 @@ On every action:
 `{id, title, progress(0-100), status, due_date}`
 
 ## 🤖 Agent Instructions
-1. **New Objective?** Add task to `kanban.json`.
+1. **New Objective?** Add task to `kanban.json` in project root.
 2. **Starting?** Move to "In Progress".
 3. **Finished?** Move to "Done" after validation.
 4. **Matrix?** Always set a clear `assignee` short name.

@@ -9,13 +9,13 @@ git clone https://github.com/tps2015gh/ai_command_center_skill.git
 ```
 
 ## 2. Initialize Data
-If you don't have a `kanban.json` yet, create one in the folder with this content:
+Create `kanban.json` in your **project root directory** (the same level as your code):
 ```json
 {"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}
 ```
 
 ## 3. Launch the Dashboard
-Choose the runner that matches your environment. Each script will **automatically open your browser** to the viewer.
+Run one of these from the project root. They will serve your project files and **automatically open your browser**.
 
 ### 🟢 Node.js
 ```bash

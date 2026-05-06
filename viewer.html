@@ -95,14 +95,28 @@
 
         async function fetchKanban() {
             try {
-                // Polling kanban.json in the SAME directory
-                const response = await fetch('kanban.json?t=' + new Date().getTime());
+                const timestamp = new Date().getTime();
+                let response;
+                
+                // 1. Try local directory first
+                try {
+                    response = await fetch('kanban.json?t=' + timestamp);
+                    if (!response.ok) throw new Error();
+                } catch (e) {
+                    // 2. Fallback to parent directory if local fails
+                    response = await fetch('../kanban.json?t=' + timestamp);
+                    if (!response.ok) throw new Error("Could not find kanban.json");
+                }
+
                 const data = await response.json();
                 renderBoard(data);
                 renderTeamMatrix(data);
                 renderMilestones(data);
                 document.getElementById('last-sync').textContent = 'Last sync: ' + new Date().toLocaleTimeString();
-            } catch (error) { console.error("Error fetching data:", error); }
+            } catch (error) { 
+                console.error("Error fetching data:", error); 
+                document.getElementById('last-sync').textContent = 'Error: kanban.json not found';
+            }
         }
 
         function renderBoard(data) {

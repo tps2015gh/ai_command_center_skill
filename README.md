@@ -16,11 +16,11 @@ This is the core philosophy: **The web viewer is read-only for humans.**
 
 ### How do I manage work?
 **You ask your AI Agent to do it.**
+-   **Data Location**: Your project's state is stored in `kanban.json`. This file must be located in your **target project's root directory**. 
 -   **To Add**: *"Add task 'Fix CSS' for FE."*
 -   **To Move**: *"Move Task #3 to Review."*
--   **To Remove**: *"Remove Task #5."*
 
-The AI Agent surgically edits the `kanban.json` file, and the viewer reflects that change instantly. This ensures the AI remains the **Source of Action** while you remain the **Source of Intent**.
+The AI Agent surgically edits the `kanban.json` file in your root folder, and the viewer reflects that change instantly. This ensures the AI remains the **Source of Action** while you remain the **Source of Intent**.
 
 > **⚠️ Important Note**: This repository is designed to "wait" for a connection from **Gemini** or your preferred **AI Agent**. You do not need to fill out any forms or enter data manually. Gemini or the Agent will autonomously fill the project state, create tasks, and update milestones by themselves the moment you make a request in the prompt.
 
