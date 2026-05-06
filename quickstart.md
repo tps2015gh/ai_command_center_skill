@@ -1,48 +1,23 @@
-# Quick Start Guide: AI Command Center
+# 🚀 Zero-Touch Quick Start
 
-Get your real-time AI coordination dashboard up and running in less than 60 seconds.
+Want the AI to do everything for you? Just follow these 4 steps:
 
-## 1. Installation
-Clone the repository into your project root:
-```bash
-git clone https://github.com/tps2015gh/ai_command_center_skill.git
-```
+1.  **Open your Terminal** inside your project folder.
+2.  **Start your AI CLI** (Gemini CLI, etc.).
+3.  **Paste the Command** below into the AI prompt.
+4.  **Sit back and watch.** The AI will clone the repo, start the server, and open your dashboard automatically.
 
-## 2. Initialize Data
-Create `kanban.json` in your **project root directory** (the same level as your code):
-```json
-{"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}
-```
+---
 
-## 3. Launch the Dashboard
-Run one of these from the project root. They will serve your project files and **automatically open your browser**.
+### 📋 The "Magic Command" (Copy & Paste this):
 
-### 🟢 Node.js
-```bash
-node serve.js
-```
+> "Clone https://github.com/tps2015gh/ai_command_center_skill.git then read the file ai_command_center_skill/SKILL.md and follow all its instructions to start the command center and initialize my project state."
 
-### 🐍 Python
-```bash
-python serve.py
-```
+---
 
-### 🐹 Go
-```bash
-go run serve.go
-```
-
-### 🐘 PHP
-```bash
-php -S localhost:8080
-# Then manually open http://localhost:8080/viewer.html
-```
-
-## 4. Connect your AI Agent
-Copy the contents of **`SKILL.md`** and paste it into your AI agent's chat (Gemini, ChatGPT, Claude).
-
-**Try this prompt:**
-> "I have added the AI Command Center skill. Please add a new task 'Initial Project Setup' assigned to TL and set it to In Progress."
-
-## 5. Watch the Magic
-Keep your browser tab open. You will see the task appear instantly without refreshing!
+## 🛠 What the AI will do for you:
+1.  **Auto-Clone**: Pulls the latest skill code from GitHub.
+2.  **Auto-Server**: Starts the Node/Py/Go server in the background.
+3.  **Auto-State**: Creates your `kanban.json` if it's missing.
+4.  **Auto-Browser**: Navigates your browser to the real-time board.
+5.  **Auto-Maintenance**: Keeps the board updated as it works on your code.

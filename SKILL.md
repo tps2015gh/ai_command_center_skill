@@ -1,49 +1,33 @@
-# AI Command Center Skill
+# AI Command Center Skill (Auto-Start Enabled)
 
 Manage tasks/milestones via real-time JSON dashboard.
 
 ## 🛠 Resources
-- `kanban.json`: Project state (Stored in the **target application's root directory**).
+- `kanban.json`: Project state (Stored in project root).
 - `viewer.html`: Web interface.
+- `serve.js/py/go`: One-click server scripts.
 
 ## 📋 SOP
 
-### 1. Init
-If missing, create `kanban.json` in the **project root**:
-`{"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}`
+### 1. Auto-Initialization (FOR AGENT)
+As soon as you are prompted to use this skill:
+1.  **Check/Create State**: Ensure `kanban.json` exists in project root. If not, create it: `{"columns":["To Do","In Progress","Review","Done"],"tasks":[],"milestones":[]}`.
+2.  **Start Server**: Execute `node serve.js`, `python serve.py`, or `go run serve.go` in the background if no server is running on port 8080.
+3.  **Open Dashboard**: Use your browser tool to open `http://localhost:8080/viewer.html`.
 
-### 2. Default Team (Compact Roles)
-- **TL (Tech Lead)**: Arch, reviews, guides.
-- **SA (Sys Analyst)**: Requirements, data design.
-- **FE (Frontend)**: UI/UX, CSS, dashboard.
-- **BE (Backend)**: API, DB (CI4), logic.
-- **SEC (Security)**: BCRYPT, auth, audits.
-- **OPS (DevOps)**: Envs (Node/Py/Go/PHP), Git.
-- **FIX (Elite Debugger)**: Deep investigation; expert in finding/fixing complex bugs.
+### 2. Default Team (Compact IDs)
+- **TL**: Tech Lead | **SA**: Sys Analyst | **FE**: Frontend | **BE**: Backend | **SEC**: Security | **OPS**: DevOps | **FIX**: Elite Debugger.
 
-### 3. Updates
-On every action:
-1. **Read** `kanban.json` from the project root.
-2. **Update** task/milestone. 
-3. **Mandatory**: Set `updated_at` (YYYY-MM-DD HH:MM:SS).
-4. **Log**: Add to `logs` array.
-5. **Write** file back to the project root.
-
-### 4. Serve
-- Place `viewer.html` and a server script in the project root.
-- Run: `node serve.js` | `python serve.py` | `go run serve.go` | `php -S localhost:8080`
-- URL: `http://localhost:8080/viewer.html`
+### 3. Live Updates
+On every milestone or task change:
+1. **Read** project root `kanban.json`.
+2. **Update** fields. **Mandatory**: Set `updated_at` (YYYY-MM-DD HH:MM:SS).
+3. **Log**: Add latest action to `logs` array.
+4. **Write** back to project root.
 
 ## 📐 Data Schema
+- Task: `{id, title, description, assignee(ID), status, updated_at, logs:[]}`
+- Milestone: `{id, title, progress(0-100), status, due_date}`
 
-### Task
-`{id, title, description, assignee(Short Name), status, updated_at, logs:[]}`
-
-### Milestone
-`{id, title, progress(0-100), status, due_date}`
-
-## 🤖 Agent Instructions
-1. **New Objective?** Add task to `kanban.json` in project root.
-2. **Starting?** Move to "In Progress".
-3. **Finished?** Move to "Done" after validation.
-4. **Matrix?** Always set a clear `assignee` short name.
+## 🤖 MANDATORY AGENT BEHAVIOR
+You are the owner of this dashboard. Do NOT wait for the user to ask you to "update the board." Whenever you perform a task (coding, research, bug fix), you MUST autonomously update the `kanban.json` to reflect your current state.

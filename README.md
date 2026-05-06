@@ -5,63 +5,30 @@ This repository is **revolutionary for the Agent-Human workflow**. It solves the
 
 ---
 
-## 🚀 Quick Links
--   [**Quick Start Guide** (Setup in 60s)](quickstart.md)
--   [**Standard Operating Procedure** (Agent Instructions)](SKILL.md)
+## ⚡ Zero-Touch Activation (1-Prompt Start)
+To start the Command Center autonomously, paste this into your AI CLI:
+
+> "Clone https://github.com/tps2015gh/ai_command_center_skill.git then read the file ai_command_center_skill/SKILL.md and follow all its instructions to start the command center and initialize my project state."
 
 ---
 
-## 🎩 The "Magic Trick": No Buttons, No UI, No Drag-and-Drop!
+## 🎩 The "Magic Trick": No Buttons, No UI!
 This is the core philosophy: **The web viewer is read-only for humans.**
-
-### How do I manage work?
-**You ask your AI Agent to do it.**
--   **Data Location**: Your project's state is stored in `kanban.json`. This file must be located in your **target project's root directory**. 
--   **To Add**: *"Add task 'Fix CSS' for FE."*
--   **To Move**: *"Move Task #3 to Review."*
-
-The AI Agent surgically edits the `kanban.json` file in your root folder, and the viewer reflects that change instantly. This ensures the AI remains the **Source of Action** while you remain the **Source of Intent**.
-
-> **⚠️ Important Note**: This repository is designed to "wait" for a connection from **Gemini** or your preferred **AI Agent**. You do not need to fill out any forms or enter data manually. Gemini or the Agent will autonomously fill the project state, create tasks, and update milestones by themselves the moment you make a request in the prompt.
+All work (Adding, Moving, Removing) is handled by the **AI Agent** autonomously. You provide the **Intent**, the AI provides the **Action**.
 
 ---
 
 ## 🔮 Why No-UI is the Future
 1.  **Intent is the Interface**: We are moving from "point and click" to "state your goal."
-2.  **Precise Addressability**: Every component (Task, Milestone) has a unique **ID**. This allows agents to target data with 100% precision, eliminating the ambiguity of traditional UIs.
-3.  **Token Efficiency**: Machine-readable JSON updates use 90% fewer tokens than long status descriptions.
+2.  **Precise Addressability**: Every component (Task, Milestone) has a unique **ID** for surgical AI targeting.
+3.  **Token Efficiency**: Machine-readable JSON updates use 90% fewer tokens than status descriptions.
 
 ---
 
-## 🌐 Shared Context Across Multiple AI Sessions
-While this skill operates via a lightweight file-based protocol rather than a complex API (like an MCP server), it achieves the exact same goal: **Global Shared Context**.
-
-Because the state lives entirely in the `kanban.json` file inside your project root:
--   **Multi-Agent Collaboration**: You can have Gemini open in your IDE CLI, Claude open in a web browser, and ChatGPT running via an API script. As long as they all have access to read/write the `kanban.json` file, they are all on the same team.
--   **No Central Server Required**: It does not depend on a single backend server holding the state in memory. The file system itself acts as the "Model Context Protocol," ensuring that if one agent adds a task, another agent instantly sees it and can pick it up.
-
----
-
-## 👥 The Default Elite Team
-The skill initializes with a high-performance team using compact **Short IDs**:
--   **TL**: Tech Lead (Arch)
--   **SA**: System Analyst (Logic)
--   **FE**: Frontend (UI/UX)
--   **BE**: Backend (API/DB)
--   **SEC**: Security (Auth)
--   **OPS**: DevOps (Git/CI)
--   **FIX**: Elite Debugger (Deep investigation/Complex fixes)
+## 👥 The Default Elite Team (Compact IDs)
+- **TL**: Tech Lead | **SA**: Sys Analyst | **FE**: Frontend | **BE**: Backend | **SEC**: Security | **OPS**: DevOps | **FIX**: Elite Debugger (Deep investigation/Complex fixes).
 
 ---
 
 ## ⚖️ Licensing
-Licensed under the **MIT License**. Use it for free, bundle it into products, or sell it—you have full commercial freedom.
-
----
-
-## 📦 Multi-Platform Support
-One-click serving scripts included for:
--   **Node.js** (`serve.js`)
--   **Python** (`serve.py`)
--   **Go** (`serve.go`)
--   **PHP** (`php -S`)
+Licensed under the **MIT License**. Use it for free, bundle it into products, or sell it—full commercial freedom.
