@@ -3,9 +3,11 @@
 ## For Gemini CLI (Local Installation)
 1.  Copy the `ai_command_center_skill` folder to your project root.
 2.  The AI Agent will automatically read `SKILL.md` and know how to update the `kanban.json`.
-3.  To view the board:
-    -   Run: `php -S localhost:8080` inside the folder.
-    -   Open: `http://localhost:8080/viewer.html`.
+3.  To view the board, use any of these commands inside the folder:
+    -   **Python**: `python serve.py`
+    -   **Go**: `go run serve.go`
+    -   **PHP**: `php -S localhost:8080`
+4.  The script will automatically open `http://localhost:8080/viewer.html` in your browser.
 
 ## For Other AI Agents (ChatGPT, Claude, etc.)
 1.  **Copy-Paste** the content of `SKILL.md` into the agent's System Prompt or the beginning of your chat session.
